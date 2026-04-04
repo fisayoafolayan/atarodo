@@ -1,0 +1,16 @@
+{{!< default}}
+
+<div class="archive-header">
+    <h1 class="archive-title">{{name}}</h1>
+    {{#if description}}
+        <p class="archive-description">{{description}}</p>
+    {{/if}}
+</div>
+
+<div class="post-feed">
+    {{#foreach posts}}
+        {{> loop}}
+    {{/foreach}}
+</div>
+
+{{> pagination}}

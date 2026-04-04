@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="{{@site.locale}}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{meta_title}}</title>
+<link rel="stylesheet" href="{{asset "css/style.min.css"}}">
+    {{#is "post, page"}}
+    <link id="hljs-theme" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    {{/is}}
+    <script>
+        var localTheme = localStorage.getItem('atarodo_theme');
+        switch (localTheme) {
+            case 'dark':
+                document.documentElement.classList.add('theme-dark');
+                break;
+            case 'light':
+                document.documentElement.classList.add('theme-light');
+                break;
+            default:
+                break;
+        }
+    </script>
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    <div class="nav-header" id="nav-header">
+        <nav class="nav-wrapper">
+            <a class="nav-logo" href="{{@site.url}}">
+                {{#if @site.logo}}
+                    <img src="{{@site.logo}}" alt="{{@site.title}}">
+                {{else}}
+                    <span class="nav-site-name">{{@site.title}}</span>
+                {{/if}}
+            </a>
+            <ul class="nav-list">
+                {{#foreach @site.navigation}}
+                    <li class="nav-item"><a href="{{url}}">{{label}}</a></li>
+                {{/foreach}}
+            </ul>
+            <div class="nav-actions">
+                <a class="nav-theme-toggle js-theme" href="#" title="Toggle theme"><span class="theme-icon"></span></a>
+                <a class="nav-search" title="Search" aria-label="Search" data-ghost-search>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.2148 18.3361C14.7436 19.3838 12.9437 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 12.9437 19.3838 14.7436 18.3361 16.2148L23.1213 21L21 23.1213L16.2148 18.3361ZM11 17.25C14.4518 17.25 17.25 14.4518 17.25 11C17.25 7.54822 14.4518 4.75 11 4.75C7.54822 4.75 4.75 7.54822 4.75 11C4.75 14.4518 7.54822 17.25 11 17.25Z" fill="currentColor"/></svg>
+                </a>
+            </div>
+        </nav>
+        <div class="nav-wrapper-control">
+            <div class="nav-control-inner">
+                <a class="nav-menu" role="button">
+                    <svg class="nav-icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 19H22.5V17H1.5V19ZM1.5 13H22.5V11H1.5V13ZM1.5 5V7H22.5V5H1.5Z" fill="currentColor"/></svg>
+                    Menu
+                </a>
+                <div class="nav-control-right">
+                <a class="nav-theme-toggle js-theme" href="#" title="Toggle theme"><span class="theme-icon"></span></a>
+                <a class="nav-search-mobile" title="Search" aria-label="Search" data-ghost-search>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.2148 18.3361C14.7436 19.3838 12.9437 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 12.9437 19.3838 14.7436 18.3361 16.2148L23.1213 21L21 23.1213L16.2148 18.3361ZM11 17.25C14.4518 17.25 17.25 14.4518 17.25 11C17.25 7.54822 14.4518 4.75 11 4.75C7.54822 4.75 4.75 7.54822 4.75 11C4.75 14.4518 7.54822 17.25 11 17.25Z" fill="currentColor"/></svg>
+                </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-close" role="button" aria-label="Close"></div>
+
+    <header class="site-header">
+        <div class="site-header-content">
+            <h1 class="site-title"><a href="{{@site.url}}">{{@site.title}}</a></h1>
+            {{#if @site.description}}
+                <p class="site-description">{{@site.description}}</p>
+            {{/if}}
+        </div>
+    </header>
+
+    <main class="site-main">
+        {{{body}}}
+    </main>
+
+    <footer class="site-footer">
+        <div class="site-footer-content">
+            <span class="footer-copy">&copy; {{date format="YYYY"}} {{@site.title}}</span>
+            <span class="footer-theme-toggle">
+                <a class="js-theme" href="#" title="Toggle theme"><span class="theme-icon"></span></a>
+            </span>
+            <span class="footer-credits">Published with <a href="https://github.com/fisayoafolayan/atarodo" target="_blank" rel="noopener">Atarodo</a></span>
+        </div>
+    </footer>
+
+    <a class="back-to-top" id="back-to-top" href="#" title="Back to top" aria-label="Back to top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 4L4 12H9V20H15V12H20L12 4Z" fill="currentColor"/></svg>
+    </a>
+
+    {{#is "post"}}
+    <div class="progress-container" id="progress-container">
+        <span class="progress-bar" id="progress-bar"></span>
+    </div>
+    {{/is}}
+
+    <script src="{{asset "js/script.min.js"}}"></script>
+    {{ghost_foot}}
+</body>
+</html>

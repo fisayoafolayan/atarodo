@@ -1,0 +1,25 @@
+{{#if pagination}}
+    {{#if pagination.pages}}
+        {{#match pagination.pages ">" 1}}
+            <nav class="pagination" aria-label="Pagination">
+                {{#if pagination.prev}}
+                    <a class="pagination-prev" href="{{page_url pagination.prev}}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M20 13V11H6.41421L12.4142 5L11 3.58578L2.58579 12L11 20.4142L12.4142 19L6.41421 13H20Z" fill="currentColor"/></svg>
+                        <span>Newer Posts</span>
+                    </a>
+                {{else}}
+                    <span class="pagination-prev pagination-disabled"></span>
+                {{/if}}
+                <span class="pagination-info">Page {{pagination.page}} of {{pagination.pages}}</span>
+                {{#if pagination.next}}
+                    <a class="pagination-next" href="{{page_url pagination.next}}">
+                        <span>Older Posts</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 13V11H17.5858L11.5858 5L13 3.58578L21.4142 12L13 20.4142L11.5858 19L17.5858 13H4Z" fill="currentColor"/></svg>
+                    </a>
+                {{else}}
+                    <span class="pagination-next pagination-disabled"></span>
+                {{/if}}
+            </nav>
+        {{/match}}
+    {{/if}}
+{{/if}}

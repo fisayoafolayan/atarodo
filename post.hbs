@@ -1,0 +1,113 @@
+{{!< default}}
+
+{{#post}}
+<header class="post-header{{#if feature_image}} has-cover{{/if}}">
+    <div class="post-header-inner">
+        <span class="post-info">
+            <span class="post-type">Article</span>
+            {{#if primary_tag}}
+                <span class="post-count">{{primary_tag.name}}</span>
+            {{/if}}
+        </span>
+        <h1 class="post-title">{{title}}</h1>
+        <div class="post-meta">
+            <div class="post-meta-avatars">
+                {{#foreach authors}}
+                    <a class="post-meta-avatar-link" href="{{url}}">
+                        {{#if profile_image}}
+                            <img class="post-meta-avatar" src="{{img_url profile_image size="xs"}}" alt="{{name}}">
+                        {{else}}
+                            <span class="post-meta-avatar post-meta-avatar-default"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg></span>
+                        {{/if}}
+                    </a>
+                {{/foreach}}
+            </div>
+            <div class="post-meta-details">
+                <div class="post-meta-author-line">
+                    {{#foreach authors}}
+                        <a class="post-meta-author" href="{{url}}">{{name}}</a>
+                    {{/foreach}}
+                </div>
+                <div class="post-meta-date-line">
+                    <time class="post-date" datetime="{{date format="YYYY-MM-DD"}}">{{date format="DD MMM YYYY"}}</time>
+                    {{#if reading_time}}<span class="post-reading-time">&bull; {{reading_time}}</span>{{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if feature_image}}
+        <div class="post-cover">
+            <img
+                srcset="{{img_url feature_image size="s"}} 300w,
+                        {{img_url feature_image size="m"}} 1000w,
+                        {{img_url feature_image size="l"}} 1600w,
+                        {{img_url feature_image size="xl"}} 2000w"
+                sizes="100vw"
+                src="{{img_url feature_image size="xl"}}"
+                alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
+            >
+        </div>
+    {{/if}}
+</header>
+
+<div class="post-main">
+    <article class="post post-full {{post_class}}">
+        <section class="post-content">
+            {{content}}
+        </section>
+
+        <footer class="post-footer">
+            <div class="post-share">
+                <span class="post-share-label">Share</span>
+                <a class="post-share-link" aria-label="Share on X" href="https://twitter.com/share?text={{encode title}}&url={{url absolute="true"}}" onclick="window.open(this.href,'twitter-share','width=550,height=235');return false;">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M14.2856 10.1635L23.2216 0H21.1048L13.3424 8.82302L7.1472 0H0L9.3704 13.3432L0 23.9999H2.1168L10.3088 14.6805L16.8528 23.9999H24M2.8808 1.56189H6.1328L21.1032 22.5148H17.8504"/></svg>
+                </a>
+                <a class="post-share-link" aria-label="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}" onclick="window.open(this.href,'facebook-share','width=580,height=296');return false;">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M0 12C0 17.94 4.32 22.86 10.02 23.88V15.36H7.08V12H10.08V9.36C10.08 6.36 12 4.68 14.76 4.68C15.6 4.68 16.56 4.8 17.4 4.92V7.98H15.84C14.4 7.98 14.04 8.7 14.04 9.66V12H17.22L16.68 15.36H14.04V23.88C19.68 22.86 24 17.94 24 12C24 5.4 18.6 0 12 0C5.4 0 0 5.4 0 12Z"/></svg>
+                </a>
+                <a class="post-share-link" aria-label="Share on LinkedIn" href="https://www.linkedin.com/shareArticle?mini=true&url={{url absolute="true"}}&title={{encode title}}" onclick="window.open(this.href,'linkedin-share','width=930,height=720');return false;">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.77 0H22.22C23.18 0 23.99 .77 24 1.73V22.27C23.99 23.23 23.19 24.01 22.22 24H1.77C.81 24.01.01 23.23 0 22.27V1.73C.01.77.81-.01 1.77 0ZM16.89 20.45H20.45V14.17C20.45 11.08 19.79 8.71 16.18 8.71C14.81 8.66 13.51 9.37 12.81 10.56H12.77V9H9.35V20.45H12.91V14.78C12.91 13.29 13.19 11.84 15.04 11.84C16.87 11.84 16.89 13.55 16.89 14.88V20.45ZM3.28 5.37C3.28 6.5 4.21 7.43 5.34 7.43C6.47 7.43 7.4 6.5 7.4 5.37C7.4 4.24 6.47 3.3 5.34 3.3C4.21 3.3 3.28 4.24 3.28 5.37ZM3.56 20.45H7.12V9H3.56V20.45Z"/></svg>
+                </a>
+                <a class="post-share-link" aria-label="Share via Email" href="mailto:?subject={{encode title}}&body={{url absolute="true"}}">
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 8L12 14L22 8V18C22 18.55 21.55 19 21 19H3C2.45 19 2 18.55 2 18V8ZM2 5C2 4.45 2.45 4 3 4H21C21.55 4 22 4.45 22 5V6L12 12L2 6V5Z"/></svg>
+                </a>
+            </div>
+
+            {{#if tags}}
+                <div class="post-tags">
+                    {{tags separator="" prefix="" autolink=true}}
+                </div>
+            {{/if}}
+        </footer>
+
+        <div class="post-comments">
+            {{comments}}
+        </div>
+    </article>
+</div>
+
+<aside class="post-nav-wrap">
+    {{#prev_post}}
+        <a class="post-nav-item post-nav-prev" href="{{url}}">
+            <span class="post-nav-arrow">&larr;</span>
+            <div class="post-nav-teaser">
+                <span class="post-nav-label">Previous post</span>
+                <h3 class="post-nav-title">{{title}}</h3>
+                <p class="post-nav-excerpt">{{excerpt words="15"}}</p>
+                <time class="post-nav-date">{{date format="D MMM YYYY"}}</time>
+            </div>
+        </a>
+    {{/prev_post}}
+    {{#next_post}}
+        <a class="post-nav-item post-nav-next" href="{{url}}">
+            <div class="post-nav-teaser">
+                <span class="post-nav-label">Next post</span>
+                <h3 class="post-nav-title">{{title}}</h3>
+                <p class="post-nav-excerpt">{{excerpt words="15"}}</p>
+                <time class="post-nav-date">{{date format="D MMM YYYY"}}</time>
+            </div>
+            <span class="post-nav-arrow">&rarr;</span>
+        </a>
+    {{/next_post}}
+</aside>
+{{/post}}

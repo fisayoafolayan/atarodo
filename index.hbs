@@ -1,0 +1,19 @@
+{{!< default}}
+
+<div class="extra-pagination">
+    {{> pagination}}
+</div>
+
+{{#if posts}}
+<div class="post-feed">
+    {{#foreach posts}}
+        {{> loop}}
+    {{/foreach}}
+</div>
+{{else}}
+<div class="no-posts">
+    <p>No posts yet. Check back soon.</p>
+</div>
+{{/if}}
+
+{{> pagination}}
