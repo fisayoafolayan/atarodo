@@ -37,7 +37,11 @@
             </a>
             <ul class="nav-list">
                 {{#foreach @site.navigation}}
+                    {{#match this.url "~" "http"}}
                     <li class="nav-item"><a href="{{this.url}}">{{label}}</a></li>
+                    {{else}}
+                    <li class="nav-item"><a href="{{url absolute="true"}}">{{label}}</a></li>
+                    {{/match}}
                 {{/foreach}}
             </ul>
             <div class="nav-actions">
