@@ -37,7 +37,7 @@
             </a>
             <ul class="nav-list">
                 {{#foreach @site.navigation}}
-                    <li class="nav-item"><a href="{{url}}">{{label}}</a></li>
+                    <li class="nav-item"><a href="{{this.url}}">{{label}}</a></li>
                 {{/foreach}}
             </ul>
             <div class="nav-actions">
