@@ -53,16 +53,12 @@
         </nav>
         <div class="nav-wrapper-control">
             <div class="nav-control-inner">
-                <a class="nav-menu" role="button">
+                <a class="nav-menu" role="button" aria-label="Menu">
                     <svg class="nav-icon-menu" width="24" height="24" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 19H22.5V17H1.5V19ZM1.5 13H22.5V11H1.5V13ZM1.5 5V7H22.5V5H1.5Z" fill="currentColor"/></svg>
-                    Menu
                 </a>
-                <div class="nav-control-right">
-                <a class="nav-theme-toggle js-theme" href="#" title="Toggle theme"><span class="theme-icon"></span></a>
                 <a class="nav-search-mobile" title="Search" aria-label="Search" data-ghost-search>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.2148 18.3361C14.7436 19.3838 12.9437 20 11 20C6.02944 20 2 15.9706 2 11C2 6.02944 6.02944 2 11 2C15.9706 2 20 6.02944 20 11C20 12.9437 19.3838 14.7436 18.3361 16.2148L23.1213 21L21 23.1213L16.2148 18.3361ZM11 17.25C14.4518 17.25 17.25 14.4518 17.25 11C17.25 7.54822 14.4518 4.75 11 4.75C7.54822 4.75 4.75 7.54822 4.75 11C4.75 14.4518 7.54822 17.25 11 17.25Z" fill="currentColor"/></svg>
                 </a>
-                </div>
             </div>
         </div>
     </div>
@@ -70,7 +66,7 @@
 
     <header class="site-header">
         <div class="site-header-content">
-            <h1 class="site-title"><a href="{{@site.url}}">{{@site.title}}</a></h1>
+            <h1 class="site-title">{{@site.title}}</h1>
             {{#if @site.description}}
                 <p class="site-description">{{@site.description}}</p>
             {{/if}}

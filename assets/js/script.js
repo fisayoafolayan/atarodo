@@ -58,24 +58,66 @@
         });
     });
 
-    // Mobile menu toggle
+    // Mobile menu toggle (bottom sheet)
     var navMenu = document.querySelector('.nav-menu');
     var navClose = document.querySelector('.nav-close');
+    var navWrapper = document.querySelector('.nav-header .nav-wrapper');
 
-    function toggleMenu() {
-        document.documentElement.classList.toggle('menu-active');
+    function openMenu() {
+        document.documentElement.classList.add('menu-active');
     }
 
-    if (navMenu) navMenu.addEventListener('click', toggleMenu);
-    if (navClose) navClose.addEventListener('click', toggleMenu);
+    function closeMenu() {
+        document.documentElement.classList.remove('menu-active');
+        if (navWrapper) navWrapper.style.transform = '';
+    }
+
+    if (navMenu) navMenu.addEventListener('click', openMenu);
+    if (navClose) navClose.addEventListener('click', closeMenu);
+
+    // Swipe down to dismiss bottom sheet
+    if (navWrapper) {
+        var startY = 0;
+        var currentY = 0;
+        var dragging = false;
+
+        navWrapper.addEventListener('touchstart', function (e) {
+            startY = e.touches[0].clientY;
+            dragging = true;
+            navWrapper.style.transition = 'none';
+        });
+
+        navWrapper.addEventListener('touchmove', function (e) {
+            if (!dragging) return;
+            currentY = e.touches[0].clientY;
+            var diff = currentY - startY;
+            if (diff > 0) {
+                navWrapper.style.transform = 'translateY(' + diff + 'px)';
+            }
+        });
+
+        navWrapper.addEventListener('touchend', function () {
+            if (!dragging) return;
+            dragging = false;
+            navWrapper.style.transition = '';
+            var diff = currentY - startY;
+            if (diff > 80) {
+                closeMenu();
+            } else {
+                navWrapper.style.transform = '';
+            }
+            startY = 0;
+            currentY = 0;
+        });
+    }
 
     window.addEventListener('resize', function () {
-        document.documentElement.classList.remove('menu-active');
+        closeMenu();
     });
 
     document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape' && document.documentElement.classList.contains('menu-active')) {
-            document.documentElement.classList.remove('menu-active');
+            closeMenu();
         }
     });
 
