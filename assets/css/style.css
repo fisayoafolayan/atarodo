@@ -618,6 +618,10 @@ img {
     color: var(--color-accent);
 }
 
+.post-header.has-cover .post-info .post-count {
+    color: #fff;
+}
+
 .post-title {
     font-family: var(--font-heading);
     font-size: 6rem;
