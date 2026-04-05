@@ -2,8 +2,8 @@
 
 <article class="error-page">
     <span class="error-code">{{statusCode}}</span>
-    <h1 class="error-title">{{#is "404"}}Page not found{{else}}Something went wrong{{/is}}</h1>
-    <p class="error-message">{{#is "404"}}The page you're looking for doesn't exist or has been moved.{{else}}{{message}}{{/is}}</p>
+    <h1 class="error-title">{{#match statusCode 404}}Lost in the sauce{{else}}The server is having a moment{{/match}}</h1>
+    <p class="error-message">{{#match statusCode 404}}Looks like this page took a vacation without telling anyone.{{else}}{{message}}{{/match}}</p>
     <div class="error-actions">
         <a class="error-link" href="{{@site.url}}">Go to homepage</a>
         <a class="error-link error-link-secondary" href="#" onclick="history.back();return false;">Go back</a>

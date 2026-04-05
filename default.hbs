@@ -64,14 +64,20 @@
     </div>
     <div class="nav-close" role="button" aria-label="Close"></div>
 
+    {{#is "index, tag, author"}}
     <header class="site-header">
         <div class="site-header-content">
-            <h1 class="site-title">{{@site.title}}</h1>
+            {{#is "index"}}
+                <h1 class="site-title">{{@site.title}}</h1>
+            {{else}}
+                <h2 class="site-title">{{@site.title}}</h2>
+            {{/is}}
             {{#if @site.description}}
                 <p class="site-description">{{@site.description}}</p>
             {{/if}}
         </div>
     </header>
+    {{/is}}
 
     <main class="site-main">
         {{{body}}}
