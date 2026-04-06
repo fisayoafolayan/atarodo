@@ -336,7 +336,8 @@ img {
         border-bottom: none;
     }
 
-    .nav-header .nav-item a {
+    .nav-header .nav-item a,
+    .cover-active .nav-header .nav-item a {
         font-size: 1.8rem;
         padding: 0;
         display: flex;
@@ -345,7 +346,8 @@ img {
         color: var(--color-text);
     }
 
-    .nav-header .nav-item a:hover {
+    .nav-header .nav-item a:hover,
+    .cover-active .nav-header .nav-item a:hover {
         color: var(--color-accent);
     }
 
@@ -376,6 +378,11 @@ img {
         background: var(--color-bg);
         color: var(--color-text-secondary);
         border-color: var(--color-border);
+    }
+
+    .menu-active .nav-menu,
+    .menu-active.cover-active .nav-menu {
+        color: var(--color-text-secondary);
     }
 
 }
